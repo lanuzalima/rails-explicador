@@ -7,10 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 10.times do
-  User.create(
-    name: Faker::Movies::HowToTrainYourDragon.character
-    username: Faker::Internet.username
-    email: Faker::Internet.email
+  user = User.create!(
+    name: Faker::Movies::Ghostbusters.actor,
+    username: Faker::Internet.username,
+    email: Faker::Internet.email,
     password: Faker::Internet.password
   )
+  puts "#{user.name} created!"
 end
