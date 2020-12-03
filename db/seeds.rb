@@ -7,8 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 10.times do
-  Article.create(
-    title: Faker::ChuckNorris.fact,
-    content: Faker::Games::StreetFighter.quote,
+  User.create(
+    name: Faker::Movies::HowToTrainYourDragon.character
+    username: Faker::Internet.username
+    email: Faker::Internet.email
+    password: Faker::Internet.password
   )
 end
