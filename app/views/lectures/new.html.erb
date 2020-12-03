@@ -1,0 +1,28 @@
+
+<div class="container">
+
+    <h2>New lecture</h2>
+
+    <%= simple_form_for(@lecture) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+        <%= f.input :title, label: "Título",
+                    required: true,
+                    autofocus: true %>
+        <%= f.input :subject, label: "Disciplina",
+                    required: true %>
+        <%= f.label "Descrição" %>
+        <%= f.text_area :description,
+                    required: true %>
+        <%= f.label "Duração (h)" %>
+        <%= f.number_field :duration,
+                    required: true, min: 0 %>
+    </div>
+
+    <div class="form-actions">
+        <%= f.button :submit, "Criar aula", class: "btn btn-primary btn-sm"  %>
+    </div>
+    <% end %>
+
+</div>

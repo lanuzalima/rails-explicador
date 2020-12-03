@@ -1,0 +1,9 @@
+<h1>Aulas</h1>
+
+
+<% @lectures.each do |lecture| %>
+  <%= lecture.title %>
+  <%= lecture.subject %>
+  <%= lecture.description %>
+  <%= lecture.user.name %>
+<% end %>
