@@ -1,9 +1,29 @@
-<h1>Detalhes da aula</h1>
+<h1>Detalhes da aula <%= @lecture.title %></h1>
 
 
 
+  <strong>Disciplina:</strong> <%= @lecture.subject %> <br>
+  <strong>Descrição:</strong> <%= @lecture.description %> <br>
+  <strong>Ofertada por:</strong> <%= @lecture.user.name %> <br>
 
-  <%= @lecture.title %>
-  <%= @lecture.subject %>
-  <%= @lecture.description %>
-  <%= @lecture.user.name %>
+    <hr>
+
+  <h2>Dias disponíveis:</h2>
+  <hr>
+
+  <% if current_user ==  %>
+
+  <% @availabilities.each do |availability| %>
+    <p>Horário disponível em: <%= availability.start_time %> <br>
+    <%= link_to "Editar horário", edit_lecture_availability_path(@lecture, availability) %> |
+    <%= link_to "Deletar Horário", 
+                                  availability_path(availability),
+                                  method: :delete,
+                                  data: { confirm: "Quer tirar essa disponibilidade de horário?" } %>
+    </p>
+    <hr>
+  <% end %>
+  <br>
+  <br>
+
+  <%= link_to "Adicionar horário", new_lecture_availability_path(@lecture) %>

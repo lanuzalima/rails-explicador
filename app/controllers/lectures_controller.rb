@@ -9,6 +9,8 @@ class LecturesController < ApplicationController
 
   def show
     @lecture = Lecture.find(params[:id])
+    @availabilities = Availability.where(lecture_id: @lecture.id)
+    @owner = Lecture.find(params[:id]).user
   end
 
   def create
