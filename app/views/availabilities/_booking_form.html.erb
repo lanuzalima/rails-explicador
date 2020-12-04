@@ -1,0 +1,5 @@
+
+<% simple_form_for [@availability, @booking] do |f| %>
+  <%= f.association :availability %>
+  <%# <% f.association :availability, collection: Availability.all(order: 'title') %>
+<% end %>

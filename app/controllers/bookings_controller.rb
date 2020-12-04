@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking
+  before_action :set_booking, except: [:create]
 
   def new
     @booking = Booking.new
@@ -7,11 +7,10 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.availability = @availability
-    @booking.user = current_user
 
     if @booking.save
-      redirect_to booking_path(@booking)
+      lecture_id = @booking.lecture.id
+      redirect_to lecture_availability_booking_path(id: @booking.id, lecture_id: lecture_id, availability_id: @booking.availability_id)
     else
       render 'new'
     end
@@ -27,10 +26,10 @@ class BookingsController < ApplicationController
   private
 
   def set_booking
-    @booking = Booking.find(params[:booking_id])
+    @booking = Booking.find(params[:id])
   end
 
   def booking_params
-    params.require(:booking).permit(:confirmation)
+    params.permit(:user_id, :availability_id, :confirmation)
   end
 end

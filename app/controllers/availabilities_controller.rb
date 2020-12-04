@@ -2,7 +2,8 @@ class AvailabilitiesController < ApplicationController
   before_action :set_availability, only: %i[show edit update destroy]
   before_action :set_lecture, only: %i[show new create]
 
-  def show; end
+  def show
+  end
 
   def new
     @availability = Availability.new
