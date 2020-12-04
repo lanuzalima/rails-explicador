@@ -1,1 +1,14 @@
-<p>aulas</p>
+
+
+<h1>Reserva de horário</h1>
+<br>
+<div class="container">
+  <span><strong>Aula: </strong><%= @booking.lecture.title %></span> <br>
+  <span><strong>Professor: </strong><%= @booking.lecture.user.name %></span> <br>
+  <span><strong>Horário: </strong><%= @booking.availability.start_time %></span>
+</div>
+<br>
+<br>
+<%= link_to "Voltar para a aula", lecture_path(params[:lecture_id]) %> <br>
+<%= link_to "Voltar para a página do horário", 
+    lecture_availability_path(params[:lecture_id], params[:availability_id])%>

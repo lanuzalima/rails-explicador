@@ -1,9 +1,15 @@
 <h1>Aulas</h1>
-
-
-<% @lectures.each do |lecture| %>
-  <%= lecture.title %>
-  <%= lecture.subject %>
-  <%= lecture.description %>
-  <%= lecture.user.name %>
-<% end %>
+<hr>
+<%= link_to "Criar nova aula", new_lecture_path %> | <%= link_to "Voltar para home", root_path %>
+<br>
+<br>
+<div class="container">
+  <% @lectures.each do |lecture| %>
+    <div class="card p-3">
+      <h3><%= link_to"#{lecture.title.capitalize}", lecture_path(lecture)%></h3>
+      <span><strong>Matéria: </strong><%= lecture.subject %></span>
+      <span><strong>Sobre esta aula: </strong><%= lecture.description %> </span>
+      <span><strong>Professor: </strong><%= lecture.user.name %></span>
+    </div>
+  <% end %>
+</div>
