@@ -11,8 +11,6 @@
   <h2>Dias disponíveis:</h2>
   <hr>
 
-  <% if current_user ==  %>
-
   <% @availabilities.each do |availability| %>
     <p>Horário disponível em: <%= availability.start_time %> <br>
     <%= link_to "Editar horário", edit_lecture_availability_path(@lecture, availability) %> |
