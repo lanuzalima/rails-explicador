@@ -3,9 +3,7 @@ class AvailabilitiesController < ApplicationController
   before_action :set_lecture, only: %i[show new create]
 
   def show
-    if has_booking?
-      @booking = Booking.where(availability_id: params[:id])
-    end
+    @booking = Booking.where(availability_id: params[:id]) if has_booking?
   end
 
   def new
@@ -15,10 +13,10 @@ class AvailabilitiesController < ApplicationController
   def create
     @availability = Availability.new(availability_params)
     @availability.lecture = @lecture
-    @availability.save
-    if @availability.save
+    if @availability.start_time > Time.zone.now && @availability.save
       redirect_to lecture_availability_path(@lecture, @availability)
     else
+      flash[:alert] = 'Data não pode ser inferior à atual'
       render 'new'
     end
   end
