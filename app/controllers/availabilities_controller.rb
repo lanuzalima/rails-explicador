@@ -11,13 +11,17 @@ class AvailabilitiesController < ApplicationController
   end
 
   def create
-    @availability = Availability.new(availability_params)
-    @availability.lecture = @lecture
-    if @availability.start_time > Time.zone.now && @availability.save
-      redirect_to lecture_availability_path(@lecture, @availability)
+    if @lecture.user == current_user
+      @availability = Availability.new(availability_params)
+      @availability.lecture = @lecture
+      if @availability.start_time > Time.zone.now && @availability.save
+        redirect_to lecture_availability_path(@lecture, @availability)
+      else
+        flash[:alert] = 'Data não pode ser inferior à atual'
+        render 'new'
+      end
     else
-      flash[:alert] = 'Data não pode ser inferior à atual'
-      render 'new'
+      redirect_to lectures_path, notice: "Apenas o professor pode incluir disponibilidade!"
     end
   end
 
@@ -25,11 +29,12 @@ class AvailabilitiesController < ApplicationController
 
   def update
     @availability.update(availability_params)
-
+    authorize @availability
     redirect_to lecture_availability_path(@availability)
   end
 
   def destroy
+    authorize @availability
     @availability.destroy
     lecture = @availability.lecture
 
