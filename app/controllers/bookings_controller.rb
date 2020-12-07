@@ -30,6 +30,12 @@ class BookingsController < ApplicationController
   def show
   end
 
+  def update
+    @booking.update(booking_params)
+
+    redirect_to pages_control_panel_path
+  end
+
   def destroy
     @booking = Booking.destroy
   end
@@ -37,8 +43,8 @@ class BookingsController < ApplicationController
   private
 
   def book_valid?
-    is_booking_valid = Booking.where(availability_id: params[:availability_id])
-                              .count.zero?
+    Booking.where(availability_id: params[:availability_id])
+           .count.zero?
   end
 
   def set_booking
