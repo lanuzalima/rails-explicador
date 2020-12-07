@@ -5,6 +5,7 @@ ruby '2.6.6'
 
 gem 'devise'
 gem 'faker'
+gem 'pg_search', '~> 2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
