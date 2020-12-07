@@ -37,8 +37,8 @@ class BookingsController < ApplicationController
   private
 
   def book_valid?
-    is_booking_valid = Booking.where(availability_id: params[:availability_id])
-                              .count.zero?
+    Booking.where(availability_id: params[:availability_id])
+           .count.zero?
   end
 
   def set_booking

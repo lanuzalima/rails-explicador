@@ -7,10 +7,10 @@
   <br>
   <% if @booking.nil? %>
     <p style="color: green">Horário disponível!</p>
+      <%= link_to "Agendar aula", lecture_availability_bookings_path( { availability_id: @availability.id, user_id: current_user }), method: :post%>
   <% else %>
     <p style="color: red">Desculpe, este horário já foi agendado!</p>
   <% end %>
-  <%= link_to "Agendar aula", lecture_availability_bookings_path( { availability_id: @availability.id, user_id: current_user }), method: :post%>
   <br><br>
   <%= link_to "Voltar", lecture_path(@lecture) %>
 
