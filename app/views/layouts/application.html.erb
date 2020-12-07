@@ -27,14 +27,22 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <%= link_to "Buscar professor", "/lectures", class: "nav-link" %>
+          <%= link_to "Buscar professor", "/lectures", class: "a nav-link" %>
         </li>
-        <li class="nav-item active">
-          <%= link_to "Login", "/users/sign_in", class: "nav-link"  %>          
-        </li>
-        <li>        
-          <a href="/users/sign_up" type="radio "class="nav-item btn btn-info mx-2">Cadastre-se</a>
-        </li>
+        <% if user_signed_in?%>
+          <li class="nav-item active">
+            <%= link_to "Fazer logout", destroy_user_session_path, method: :delete, class: "a nav-link btn btn-info mx-2"%>          
+          </li>
+          <% else %>
+          <li class="nav-item active">
+            <%= link_to "Fazer login", "/users/sign_in", class: "a nav-link"  %>          
+          </li>
+          <li>        
+            <a href="/users/sign_up" type="radio "class="nav-item btn btn-info mx-2">Cadastre-se</a>
+          </li>
+
+        <% end %>
+        
         <li class="nav-item dropdown">
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -48,7 +56,8 @@
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
+  <div style="background-color: $blue;">
+  </div>
     <%= yield %>
   </body>
 </html>

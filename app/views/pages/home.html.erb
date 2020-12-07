@@ -1,5 +1,40 @@
-<h1>Pages#home</h1>
-<hr>
-<%= link_to "Criar aula", new_lecture_path %> <br>
-<%= link_to "Ver todas as aulas", lectures_path %> <br>
-<%= link_to('Logout', destroy_user_session_path, method: :delete) %>   
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://image.freepik.com/fotos-gratis/crianca-segurando-uma-pilha-de-livros-copiar-o-espaco_23-2148764072.jpg);">
+  <div class="container">
+    <h1> <strong>Um novo jeito de aprender</strong>!</h1>
+    <p>Escolha os melhores professores de acordo com seu interesse</p>
+    <a class="btn btn-info" href="#">Quero ser um explicador</a>
+    <a class="btn btn-outline-info" href="#">Quero uma explicação</a>
+  </div>
+  
+</div>
+
+<div class="container">
+  <h2 class="mt-5 d-flex justify-content-center">Encontre aqui o seu professor</h2>
+  <form class="form-inline active-cyan-4 my-4 justify-content-center">
+    <i class="fas fa-search px-2" aria-hidden="true"></i>
+    <input class="form-control form-control-sm mr-2 w-50" type="text" placeholder="Search"
+      aria-label="Search">
+    <a class="btn btn-filter btn-sm" href="/lectures">Ver todas as aulas</a>
+  </form>
+  <div class="row justify-content-center">  
+   <% @lectures.each do |lecture| %>
+    <div class="card-trip my-3 mx-2" style="width: 16rem;">
+      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" />
+      <div class="card-trip-infos">
+        <div>
+          <h4><%= link_to"#{lecture.title.capitalize}", lecture_path(lecture)%></h4>
+          <p><%= lecture.user.name %></p>
+          <h6><%= lecture.description %></h6>
+        </div>
+        
+      </div>
+    </div>
+   
+   <% end %>
+     
+
+  </div>
+</div>
+
+<%# <%= link_to "Criar aula", new_lecture_path %>
+<%# <%= link_to "Ver todas as aulas", lectures_path %>

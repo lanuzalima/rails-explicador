@@ -1,4 +1,6 @@
 class LecturesController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[show index]
+
   def index
     @lectures = Lecture.all
   end
@@ -9,12 +11,14 @@ class LecturesController < ApplicationController
 
   def show
     @lecture = Lecture.find(params[:id])
+    authorize @lecture
     @availabilities = Availability.where(lecture_id: @lecture.id)
     @owner = Lecture.find(params[:id]).user
   end
 
   def create
     @lecture = Lecture.new(lecture_params)
+    authorize @lecture
     @lecture.user = current_user
 
     if @lecture.save

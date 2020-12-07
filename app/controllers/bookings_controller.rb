@@ -6,8 +6,8 @@ class BookingsController < ApplicationController
   end
 
   def create
-
     @booking = Booking.new(booking_params)
+    authorize @booking
     if book_valid?
       if @booking.save
         lecture_id = @booking.lecture.id
