@@ -3,6 +3,9 @@ class AvailabilitiesController < ApplicationController
   before_action :set_lecture, only: %i[show new create]
 
   def show
+    if has_booking?
+      @booking = Booking.where(availability_id: params[:id])
+    end
   end
 
   def new
@@ -47,5 +50,10 @@ class AvailabilitiesController < ApplicationController
 
   def availability_params
     params.require(:availability).permit(:start_time)
+  end
+
+  def has_booking?
+    Booking.where(availability_id: params[:id])
+           .count.positive?
   end
 end

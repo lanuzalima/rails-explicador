@@ -1,12 +1,18 @@
 
 <div class="container">
 
-  <h2>Horário para <%= @lecture.title %></h2>
+  <h2>Horário para a aula <%= @lecture.title.capitalize %></h2>
 
   <%= @availability.start_time %>
-
+  <br>
+  <% if @booking.nil? %>
+    <p style="color: green">Horário disponível!</p>
+  <% else %>
+    <p style="color: red">Desculpe, este horário já foi agendado!</p>
+  <% end %>
+  <%= link_to "Agendar aula", lecture_availability_bookings_path( { availability_id: @availability.id, user_id: current_user }), method: :post%>
+  <br><br>
   <%= link_to "Voltar", lecture_path(@lecture) %>
 
-  <%= link_to "Agendar aula", lecture_availability_bookings_path( { availability_id: @availability.id, user_id: current_user }), method: :post%>
 </div>
 
