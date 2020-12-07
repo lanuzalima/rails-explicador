@@ -30,6 +30,12 @@ class BookingsController < ApplicationController
   def show
   end
 
+  def update
+    @booking.update(booking_params)
+
+    redirect_to pages_control_panel_path
+  end
+
   def destroy
     @booking = Booking.destroy
   end

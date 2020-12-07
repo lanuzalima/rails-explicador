@@ -1,0 +1,28 @@
+<h1>Painel de Controle de  <%= current_user.name %></h1>
+<hr>
+<div class="container">
+  <div class="row d-block">
+    <div class="row d-block">
+      <h2>Para explicar</h2>
+      <hr>
+    </div>      
+    <% if @user_lectures %>
+      <%= render "cp_my_lectures" %>
+    <% else %>
+      <p>Você ainda não criou nenhuma aula. Deseja criar uma aula?</p>
+      <%= link_to "Criar uma aula", new_lecture_path %>
+    <% end %>
+  </div>
+  <div class="row d-block">
+    <div class="row d-block">
+      <h2>Para aprender</h2>
+      <hr>        
+    </div>
+        <% if @user_bookings %>
+      <%= render "cp_my_bookings" %>
+    <% else %>
+      <p>Você ainda não agendou aulas. Deseja procurar uma aula?</p>
+      <%= link_to "Buscar aulas", lectures_path %>
+    <% end %>
+  </div>
+</div>
