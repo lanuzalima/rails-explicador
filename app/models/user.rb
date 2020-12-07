@@ -7,4 +7,7 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :availabilities, through: :lectures
   has_many :bookings, through: :availabilities
+
+  validates :name, :username, :email, :password, presence: true
+  validates :username, :email, uniqueness: true
 end

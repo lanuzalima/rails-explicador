@@ -14,10 +14,10 @@ class AvailabilitiesController < ApplicationController
     if @lecture.user == current_user
       @availability = Availability.new(availability_params)
       @availability.lecture = @lecture
-      @availability.save
-      if @availability.save
+      if @availability.start_time > Time.zone.now && @availability.save
         redirect_to lecture_availability_path(@lecture, @availability)
       else
+        flash[:alert] = 'Data não pode ser inferior à atual'
         render 'new'
       end
     else
