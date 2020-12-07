@@ -9,13 +9,21 @@
 </div>
 
 <div class="container">
-  <h2 class="mt-4 d-flex justify-content-center">Encontre aqui o seu professor</h2>
-  <form class="form-inline active-cyan-4 my-4 justify-content-center">
+ <h2 class="mt-5 d-flex justify-content-center">Quero aprender sobre:</h2>
+    <%= form_tag lectures_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Temas, disciplinas, professores..."
+      %>
+      <%= submit_tag "Search", class: "btn btn-filter btn-sm" %>
+    <% end %>
+  <%# <form class="form-inline active-cyan-4 my-4 justify-content-center">
     <i class="fas fa-search px-2" aria-hidden="true"></i>
     <input class="form-control form-control-sm mr-2 w-50" type="text" placeholder="Search"
       aria-label="Search">
     <a class="btn btn-filter btn-sm" href="/lectures">Ver todas as aulas</a>
-  </form>
+  </form> %>
   <div class="row justify-content-center">  
    <% @lectures.each do |lecture| %>
     <div class="card-trip my-3 mx-2" style="width: 16rem;">

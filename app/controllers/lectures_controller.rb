@@ -2,7 +2,11 @@ class LecturesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[show index]
 
   def index
-    @lectures = Lecture.all
+    if params[:query].present?
+      @lectures = Lecture.global_search(params[:query])
+    else
+      @lectures = Lecture.all
+    end
   end
 
   def new
