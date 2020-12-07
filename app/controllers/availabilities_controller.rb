@@ -3,9 +3,7 @@ class AvailabilitiesController < ApplicationController
   before_action :set_lecture, only: %i[show new create]
 
   def show
-    if has_booking?
-      @booking = Booking.where(availability_id: params[:id])
-    end
+    @booking = Booking.where(availability_id: params[:id]) if has_booking?
   end
 
   def new
@@ -13,13 +11,17 @@ class AvailabilitiesController < ApplicationController
   end
 
   def create
-    @availability = Availability.new(availability_params)
-    @availability.lecture = @lecture
-    @availability.save
-    if @availability.save
-      redirect_to lecture_availability_path(@lecture, @availability)
+    if @lecture.user == current_user
+      @availability = Availability.new(availability_params)
+      @availability.lecture = @lecture
+      @availability.save
+      if @availability.save
+        redirect_to lecture_availability_path(@lecture, @availability)
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      redirect_to lectures_path, notice: "Apenas o professor pode incluir disponibilidade!"
     end
   end
 
@@ -27,11 +29,12 @@ class AvailabilitiesController < ApplicationController
 
   def update
     @availability.update(availability_params)
-
+    authorize @availability
     redirect_to lecture_availability_path(@availability)
   end
 
   def destroy
+    authorize @availability
     @availability.destroy
     lecture = @availability.lecture
 
