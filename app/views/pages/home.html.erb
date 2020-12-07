@@ -9,7 +9,7 @@
 </div>
 
 <div class="container">
-  <h2 class="mt-5 d-flex justify-content-center">Quero aprender sobre:</h2>
+ <h2 class="mt-5 d-flex justify-content-center">Quero aprender sobre:</h2>
     <%= form_tag lectures_path, method: :get do %>
       <%= text_field_tag :query,
         params[:query],
@@ -32,7 +32,8 @@
         <div>
           <h4><%= link_to"#{lecture.title.capitalize}", lecture_path(lecture)%></h4>
           <p><%= lecture.user.name %></p>
-          <h6><%= lecture.description %></h6>
+          <h2><%= lecture.subject.capitalize %></h2>
+          <h6><%= lecture.description.capitalize %></h6>
         </div>
         
       </div>

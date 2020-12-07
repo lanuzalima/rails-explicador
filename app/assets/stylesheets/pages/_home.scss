@@ -5,7 +5,7 @@ h2 {
 .banner {
   background-size: cover;
   background-position: center;
-  padding: 180px 0;
+  padding: 140px 0;
 }
 
 .banner h1 {
@@ -30,7 +30,7 @@ h2 {
 }
 
 .card-trip > img {
-  height: 160px;
+  height: 120px;
   width: 100%;
   object-fit: cover;
 }
@@ -38,13 +38,23 @@ h2 {
 .card-trip h2 {
   font-size: 16px;
   font-weight: bold;
-  margin: 0;
+  margin-bottom: 4px;
 }
 
 .card-trip p {
-  font-size: 12px;
+  font-size: 14px;
   opacity: .7;
-  margin: 0;
+  margin-bottom: 8px;
+}
+
+.card-trip a {
+  color: rgb(112, 112, 112);
+  text-decoration: none;
+}
+
+.card-trip a:hover {
+  color: rgb(31, 31, 31);
+  text-decoration: none;
 }
 
 

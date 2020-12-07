@@ -1,15 +1,19 @@
-<h1>Aulas</h1>
-<hr>
-<%= link_to "Criar nova aula", new_lecture_path %> | <%= link_to "Voltar para home", root_path %>
+<div class="container mt-4">
+<h1>Aulas disponíveis</h1>
+
+<%= link_to "Criar nova aula", new_lecture_path, class: "a btn btn-info bt-sm my-2"%> 
+<%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
 <br>
 <br>
-<div class="container">
   <% @lectures.each do |lecture| %>
-    <div class="card p-3">
-      <h3><%= link_to"#{lecture.title.capitalize}", lecture_path(lecture)%></h3>
-      <span><strong>Matéria: </strong><%= lecture.subject %></span>
-      <span><strong>Sobre esta aula: </strong><%= lecture.description %> </span>
-      <span><strong>Professor: </strong><%= lecture.user.name %></span>
+    <div class="card-lecture">
+      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" />
+      <div class="card-lecture-infos">
+        <h2><%= link_to"#{lecture.title.capitalize}", lecture_path(lecture)%></h2>
+        <p>Professor(a): <%= lecture.user.name %></p>
+        <h2>Matéria: <%= lecture.subject %></h2>
+        <h2>Sobre esta aula: <%= lecture.description %> </h2>
+      </div>
     </div>
   <% end %>
 </div>
