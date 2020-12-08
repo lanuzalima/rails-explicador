@@ -1,0 +1,28 @@
+<div class="container">
+  <h1 class="mt-3 col col-12"><%= current_user.name %> <span class="lighten">- Painel de Controle</span></h1>
+  <hr>
+  <div class="d-flex">
+    <% if @user_lectures.count.positive? %>
+      <div class="col col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12 ml-n2 mr-3 right-line">
+        <div class="row d-block">
+          <h2 class="box yellow">Explicando</h2>
+        </div>      
+        <%= render "cp_my_lectures" %>
+      </div>
+    <%# else %>
+        <%# <p>Você ainda não criou nenhuma aula. Deseja criar uma aula?</p> %>
+        <%#= link_to "Criar uma aula", new_lecture_path %>
+    <% end %>
+    <% if @user_bookings.count.positive? %>
+      <div class="col col-lg-6 col-xl-6 col-md-12 col-sm-12">
+        <div class="row d-block">
+          <h2 class="box teal">Aprendendo</h2>     
+        </div>
+          <%= render "cp_my_bookings" %>
+      </div>
+    <%# else %>
+      <%# <p>Você ainda não agendou aulas. Deseja procurar uma aula?</p> %>
+      <%#= link_to "Buscar aulas", lectures_path %>
+    <% end %>
+  </div>
+</div>
