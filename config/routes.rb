@@ -8,5 +8,8 @@ Rails.application.routes.draw do
     end
   end
   resources :availabilities, only: %i[destroy update]
-  get '/pages/control_panel', to: 'pages#control_panel'
+  get '/control_panel', to: 'control_panel#index'
+  get '/control_panel/all_my_availabilities', to: 'control_panel#all_my_availabilities'
+  get '/control_panel/all_my_bookings', to: 'control_panel#all_my_bookings'
+  get '/control_panel/all_my_lectures', to: 'control_panel#all_my_lectures'
 end

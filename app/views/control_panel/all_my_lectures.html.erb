@@ -1,0 +1,53 @@
+<% n_avail = @lectures[:availables].count %>
+<% n_not_avail = @lectures[:not_availables].count %>
+    
+<%  def available(lecture)  %>
+  <% bookings = Booking.joins(:availability)
+                       .where(availabilities: { lecture_id: lecture.id }) 
+                       .count%>  
+  <% availabilities = Availability.where(lecture_id: lecture.id).count %> 
+  <% availabilities - bookings %> 
+<% end %>
+
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <h3 class="mt-3">Solicitações enviadas</h3>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="nav_btn confirmed"><a href="#c"><h6>Disponíveis</h6></a></div>
+      <div class="nav_btn denied"><a href="#d"><h6>Indisponíveis</h6></a></div>
+    </div>
+  </div>
+  <hr>  
+  <div class="col col-12">
+  <h5 id="c">Disponíveis (<%= n_avail.positive? ? n_avail : 0 %>)</h5>
+  <% if n_avail.positive? %>
+    <% @lectures[:availables].each do |lecture| %>
+      <div class="booking_card confimed">
+         <h6> <%= link_to "#{lecture.title}", lecture_path(lecture) %> </h6>
+         Datas disponíveis: <%= available(lecture) %>
+      </div>   
+    <% end %>
+  <% else %>
+    <p>Não há horários disponíveis para suas aulas.</p>
+  <% end %>
+  </div>
+  <hr>
+  <div class="col col-12">
+  <h5 id="d">Indisponíveis (<%= n_not_avail.positive? ? n_not_avail : 0 %>)</h5>
+  <% if n_not_avail.positive? %>
+    <% @lectures[:not_availables].each do |lecture| %>
+      <div class="booking_card denied">
+         <h6> <%= link_to "#{lecture.title}", lecture_path(lecture) %> </h6>
+         Datas disponíveis: <%= available(lecture) %>
+         
+      </div>  
+    <% end %>
+  <% else %>
+    <p>Todas as suas aulas estão disponíveis.</p>
+  <% end %>           
+  </div>
+  <hr>
+  <div class="col col-12 mb-3">
+    <%= link_to "Voltar ao painel de controle", control_panel_path %>
+  </div>
+</div>
