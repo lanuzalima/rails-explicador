@@ -61,9 +61,8 @@
   </form> %>
   <div class="row justify-content-center">  
    <% @lectures.each do |lecture| %>
-    <div class="card-trip my-3 mx-2" style="width: 16rem;">
-      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" />
-      <div class="card-trip-infos">
+    <div <%=cl_image_tag current_user.photo.key%> class="card-trip my-3 mx-2" style="width: 16rem;">
+       <div class="card-trip-infos">
         <div>
           <h4><%= link_to"#{lecture.title.capitalize}", lecture_path(lecture)%></h4>
           <p><%= lecture.user.name %></p>
