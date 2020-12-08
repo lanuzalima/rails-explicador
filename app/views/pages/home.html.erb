@@ -63,7 +63,7 @@
    <% @lectures.each do |lecture| %>
     <div class="card-trip my-3 mx-2" style="width: 16rem;">
         <% if lecture.user.photo.present? %>
-            <%= cl_image_tag lecture.user.photo.key%>
+            <%= cl_image_tag lecture.user.photo.key %>
         <% else %>
             <%= image_tag "https://static.wixstatic.com/media/2bd527_3c1c98c65bfb4ba78f36b31c5a713816~mv2.png/v1/fill/w_152,h_160,al_c,q_85,usm_0.66_1.00_0.01/icone.webp" %>
         <%end%>
