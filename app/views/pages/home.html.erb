@@ -1,24 +1,59 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://image.freepik.com/fotos-gratis/crianca-segurando-uma-pilha-de-livros-copiar-o-espaco_23-2148764072.jpg);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://image.freepik.com/fotos-gratis/linda-garota-da-escola-lendo-um-livro_23-2148763985.jpg);">
   <div class="container">
     <h1> <strong>Um novo jeito de aprender</strong>!</h1>
     <p>Escolha os melhores professores de acordo com seu interesse</p>
-    <a class="btn btn-info" href="#">Quero ser um explicador</a>
-    <a class="btn btn-outline-info" href="#">Quero uma explicação</a>
+    <%# <a class="btn btn-info mb-2" href="#">Quero ser um explicador</a>
+    <a class="btn btn-outline-info mb-2" href="#">Quero uma explicação</a> %>
+    <div class="card-trip my-5 mx-2 d-flex justify-content-center" id="card-banner" style="width: 20rem;">
+      <div class="card-trip-infos">
+        <div>
+          <h5 class="mt-2 mb-3 d-flex justify-content-center"><strong>Quero aprender sobre:</strong></h5>
+          <div class="form-inline">          
+          <%= form_tag lectures_path, method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Matérias, professores..."
+            %>
+            <button name="button" type="submit" class="btn btn-light">
+              <i class="fas fa-search"></i>
+            </button>
+          <% end %>
+          </div>
+          <a class="btn btn-filter my-3" href="/lectures">Listar todas as aulas</a>
+        </div>
+      </div>
+    </div>
   </div>
   
 </div>
 
 <div class="container">
- <h2 class="mt-5 d-flex justify-content-center">Quero aprender sobre:</h2>
-    <%= form_tag lectures_path, method: :get do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Temas, disciplinas, professores..."
-      %>
-      <%= submit_tag "Search", class: "btn btn-filter btn-sm" %>
-    <% end %>
-  <%# <form class="form-inline active-cyan-4 my-4 justify-content-center">
+<h2 class="mt-5 d-flex justify-content-center">Vários professores em um só lugar:</h2>
+ <%# <h2 class="mt-5 d-flex justify-content-center">Quero aprender sobre:</h2>
+  <form>
+    <div class="form-row d-flex justify-content-center mt-2">
+      <div class="form-group col-md-8">
+      <%= form_tag lectures_path, method: :get do %>
+        <%# <div class="search-form-control form-group">
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control form-control-sm",
+          placeholder: "Temas, disciplinas, professores..."
+        %>
+        <%# <button name="button" type="submit" class="btn btn-light">
+          <i class="fas fa-search"></i>
+        </button>
+        </div>
+      <% end %>
+      <%# </div>
+      <div class="form-group">
+      </div>
+    </div>
+  </form>
+        <a class="btn btn-filter btn-lg" href="/lectures">Listar aulas</a>
+   
+  <%<form class="form-inline active-cyan-4 my-4 justify-content-center">
     <i class="fas fa-search px-2" aria-hidden="true"></i>
     <input class="form-control form-control-sm mr-2 w-50" type="text" placeholder="Search"
       aria-label="Search">

@@ -3,16 +3,17 @@ h2 {
   color: rgb(97, 95, 95);
 }
 .banner {
+  background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
-  padding: 140px 0;
+  background-position: top;
+  padding: 120px 0;
 }
 
 .banner h1 {
   margin: 0;
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
+  font-size: 40px;
   font-weight: bold;
 }
 
@@ -23,6 +24,18 @@ h2 {
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
+.banner h5 {
+  font-size: 22px;
+  color: rgb(82, 81, 81);
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+}
+
+#card-banner {
+  border-radius: 5px;
+  background-color: #dfdad0;
+  box-shadow: 1px 2px 3px #5c5c5c;
+  
+}
 .card-trip {
   overflow: hidden;
   background: white;
@@ -73,22 +86,34 @@ h2 {
   width: 40px;
 }
 
-.active-cyan-2 input[type=text]:focus:not([readonly]) {
-  border-bottom: 1px solid #4dd0e1;
-  box-shadow: 0 1px 0 0 #4dd0e1;
+.search-form-control {
+  position: relative;
 }
-.active-cyan input[type=text] {
-  border-bottom: 1px solid #4dd0e1;
-  box-shadow: 0 1px 0 0 #4dd0e1;
+
+.search-form-control .btn {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  right: 6px;
 }
-.active-cyan .fa, .active-cyan-2 .fa {
-  color: #4dd0e1;
+
+.search-form-control .form-control {
+  height: 3.1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border: 1px solid #E7E7E7;
+}
+
+.search-form-control .form-control:focus {
+  border: 1px solid #1EDD88;
+  outline: none !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
 .btn-filter {
-  color: white;
+  color: white !important;
   background: #2f4e4b;
   transition: background 0.3s ease;
+  padding: 4px 52px;
 }
 
 .btn-filter:hover {
