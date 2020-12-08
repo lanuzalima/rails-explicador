@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
   def update
     @booking.update(booking_params)
 
-    redirect_to pages_control_panel_path
+    redirect_to control_panel_path
   end
 
   def destroy
