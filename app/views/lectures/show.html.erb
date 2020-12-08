@@ -26,12 +26,10 @@
                 <%end%>
                 <div class="card-product-infos mx-5"  >
                     <h1><%= @lecture.title.capitalize %></h1>
-<<<<<<< HEAD
-                    <h2>Descrição: <%= @lecture.description %></h2>
-=======
+
 
                     <h2>Descrição: <%= @lecture.description.capitalize %></h2>
->>>>>>> 51cab6e627aa2d9eaf57372a069a045ba3a93b08
+
                     <% if @owner == current_user %>
                       <h2> Você é o professor desta aula. </h2><br>
                     <% else %>
