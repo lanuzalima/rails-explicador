@@ -8,24 +8,24 @@
           <%= f.error_notification %>
 
           <div class="form-inputs">
-            <%= f.input :name,
+            <%= f.input :name, label: "Nome",
                         required: true,
                         autofocus: true %>
-            <%= f.input :username,
+            <%= f.input :username, 
                         required: true%>
 
             <%= f.input :email,
                         required: true,
                         input_html: { autocomplete: "email" }%>
-            <%= f.input :password,
+            <%= f.input :password, label: "Senha",
                         required: true,
-                        hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                        input_html: { autocomplete: "new-password" } %>
-            <%= f.input :password_confirmation,
+                        hint: ("#{@minimum_password_length} caracteres" if @minimum_password_length),
+                        input_html: { autocomplete: "nova-senha" } %>
+            <%= f.input :password_confirmation, label: "Confirmação de senha",
                         required: true,
-                        input_html: { autocomplete: "new-password" } %>
+                        input_html: { autocomplete: "nova-senha" } %>
 
-            <%= f.input :photo, as: :file %>
+            <%= f.input :photo, as: :file, label: "Foto" %>
           </div>
 
           <div class="form-actions">
