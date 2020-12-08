@@ -1,0 +1,96 @@
+<% n_conf = @lectures_bookings[:confirmed].count %>
+<% n_not_conf = @lectures_bookings[:not_confirmed].count %>
+<% n_denied = @lectures_bookings[:denied].count %>
+
+<% def booking_params(booking, confirmation = false) %>
+  <% booking_params = { lecture_id: booking.availability.lecture.id,
+                        availability_id: booking.availability.id,
+                        id: booking.id,
+                        confirmation: confirmation } %>  
+<% end %>
+
+<% def format_date(date) %>
+  <% date.day < 10 ? day = "0" + date.day.to_s : day = date.day.to_s  %>
+  <% date.month < 10 ? month = "0" + date.month.to_s : month = date.month.to_s  %>
+  <% year = date.year.to_s %>
+  <% date.hour < 10 ? hour = "0" + date.hour.to_s : hour = date.hour.to_s  %>
+  <% date.min < 10 ? minute = "0" + date.min.to_s : minute = date.min.to_s  %>
+  <% "#{day}/#{month}/#{year} - #{hour}h#{minute}" %>
+<% end %>
+
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <h3 class="mt-3">Solicitações recebidas</h3>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="nav_btn confirmed"><a href="#c"><h6>confirmadas</h6></a></div>
+      <div class="nav_btn pending"><a href="#p"><h6>pendentes</h6></a></div>
+      <div class="nav_btn denied"><a href="#d"><h6>negadas</h6></a></div>
+    </div>
+  </div>
+  <hr>
+  <div class="col col-12">
+      <h5 id="c">Confirmadas (<%= n_conf.positive? ? n_conf : 0 %>)</h5>
+      <% if n_conf.positive? %>
+        <% @lectures_bookings[:confirmed].each do |booking| %>
+          <div class="booking_card confimed">
+             <h6> <%= link_to "#{booking.availability.lecture.title}",  
+                          lecture_availability_booking_path(booking_params(booking)) %> </h6>
+              Data: <%= format_date(booking.availability.start_time) %> <br>
+              Aluno: <%= booking.user.name %> 
+          </div>
+        <% end %>
+      <% else %>
+        <p>Você não confirmou agendamentos.</p>
+      <% end %>              
+    </div>
+    <hr>
+    <div class="col col-12">
+      <h5 id="p">Pendentes (<%= n_not_conf.positive? ? n_not_conf : 0 %>)</h5>
+      <% if n_not_conf.positive? %>
+        <% @lectures_bookings[:not_confirmed].each do |booking| %>
+            <div class="booking_card pending">
+              <h6> <%= link_to "#{booking.availability.lecture.title}",  
+                            lecture_availability_booking_path(booking_params(booking)) %> </h6>
+              Data: <%= format_date(booking.availability.start_time) %> <br>
+              Aluno: <%= booking.user.name %>
+              <div class="confirm_pending">
+                <%= link_to ("<i class='fas fa-check yes' title='Confirmar'></i>")
+                    .html_safe, 
+                    lecture_availability_booking_path(booking_params(booking, true)),
+                                       method: :patch,
+                                       confirmation: true,
+                                       data: { confirm: "Confirmar agendamento?" } %>
+                <%= link_to ("<i class='fas fa-times no' title='negar'></i>")
+                    .html_safe,  
+                    lecture_availability_booking_path(booking_params(booking, false)),
+                                       method: :patch,
+                                       data: { confirm: "Negar agendamento?" } %>              
+              </div>
+            </div>            
+
+        <% end %>
+      <% else %>
+        <p>Você não tem agendamentos com confirmação pendente.</p>
+      <% end %>             
+    </div>
+    <hr>
+    <div class="col col-12">
+      <h5 id="d">Negadas (<%= n_denied.positive? ? n_denied : 0 %>)</h5>
+      <% if n_denied.positive? %>
+        <% @lectures_bookings[:denied].each do |booking| %>
+          <div class="booking_card denied">
+             <h6> <%= link_to "#{booking.availability.lecture.title}",  
+                          lecture_availability_booking_path(booking_params(booking)) %> </h6>
+              Data: <%= format_date(booking.availability.start_time) %> <br>
+              Aluno: <%= booking.user.name %> 
+          </div>            
+        <% end %>
+      <% else %>
+        <p>Você não negou agendamentos.</p>
+      <% end %>             
+    </div>
+    <br>
+  <div class="col col-12 mb-3">
+    <%= link_to "Voltar ao painel de controle", control_panel_path %>
+  </div>
+</div>
