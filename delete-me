@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+  <%= link_to "Voltar para aulas", lectures_path, class:"btn btn-success mt-5" %>
+</div>
+
+
+                <%= link_to ("<i class='fas fa-check yes' title='Confirmar'></i>")
+                    .html_safe, 
+                    lecture_availability_booking_path(booking_params(booking)),
+                                       method: :post,
+                                       confirmation: true,
+                                       data: { confirm: "Solicitar agendamento?" } %>
+
+
+<%# código antigo %>
+<br>
+<br>
+<br>
+<h1>Detalhes da aula <%= @lecture.title.capitalize %></h1>
+
+
+  <strong>Disciplina:</strong> <%= @lecture.subject %> <br>
+  <strong>Descrição:</strong> <%= @lecture.description %> <br>
+  <strong>Ofertada por:</strong> <%= @owner.name %> <br>
+
+    <hr>
+
+  <h2>Dias disponíveis:</h2>
+  <hr>
+
+  <% @availabilities.each do |availability| %>
+    <% if Booking.where(availability_id: availability.id)[0] %>
+      <%= link_to ("<span style='color: red'>Indisponível: </span><strong>Data: #{availability.start_time} </strong>").html_safe,   lecture_availability_path(@lecture, availability) %> 
+    <% else %>
+      <%= link_to ("<span style='color: green'>Disponível:  </span><strong>Data: #{availability.start_time} </strong>").html_safe,   lecture_availability_path(@lecture, availability) %> 
+    <% end %>
+    
+    <br>
+    <%= link_to "Editar horário", edit_lecture_availability_path(@lecture, availability) %> |
+    <%= link_to "Deletar Horário", 
+                                  availability_path(availability),
+                                  method: :delete,
+                                  data: { confirm: "Quer tirar essa disponibilidade de horário?" } %>
+    </p>
+    <hr>
+  <% end %>
+  <br>
+  <br>
+
+
+<div class="div">
+
+   <%= link_to "Adicionar horário", new_lecture_availability_path(@lecture), class:"btn btn-info mx-2"%> <br>
+  <%= link_to "Voltar para lista de aulas", lectures_path, class:"btn btn-success mx-2" %>
+</div>
