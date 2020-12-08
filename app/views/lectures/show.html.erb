@@ -19,7 +19,11 @@
     <div class="row justify-content-space between" > 
         <div class="col-8">
             <div class="card-product mt-5 " style="height: 16rem;">
-                <img src="https://res.cloudinary.com/lanuza/image/upload/v1606869425/grjwl3eth0ia5xrng0rm.jpg" />
+                <% if @lecture.user.photo.present? %>
+                     <%= cl_image_tag @lecture.user.photo.key%>
+                <% else %>
+                      <%= image_tag "https://static.wixstatic.com/media/2bd527_3c1c98c65bfb4ba78f36b31c5a713816~mv2.png/v1/fill/w_152,h_160,al_c,q_85,usm_0.66_1.00_0.01/icone.webp" %>
+                <%end%>
                 <div class="card-product-infos mx-5"  >
                     <h1><%= @lecture.title.capitalize %></h1>
                     <h2>Descrição: <%= @lecture.description %> only.</h2>

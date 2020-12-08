@@ -7,7 +7,11 @@
 <br>
   <% @lectures.each do |lecture| %>
     <div class="card-lecture">
-      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" />
+      <% if lecture.user.photo.present? %>
+         <%= cl_image_tag lecture.user.photo.key%>
+      <% else %>
+         <%= image_tag "https://static.wixstatic.com/media/2bd527_3c1c98c65bfb4ba78f36b31c5a713816~mv2.png/v1/fill/w_152,h_160,al_c,q_85,usm_0.66_1.00_0.01/icone.webp" %>
+      <%end%>
       <div class="card-lecture-infos">
         <h2><%= link_to"#{lecture.title.capitalize}", lecture_path(lecture)%></h2>
         <p>Professor(a): <%= lecture.user.name %></p>
