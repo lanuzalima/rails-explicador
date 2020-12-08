@@ -5,7 +5,7 @@
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.089);
   font-size: small;
   opacity: 0.7;
-  // background-color: rgb(250, 250, 250);
+  background-color: rgb(250, 250, 250);
   
 
   h6 {
@@ -90,7 +90,8 @@
 }
 
 .yellow-line{
-  border: 1px solid $yellow;;
+  // border: 1px solid $yellow;
+  background-color: $light_yellow;
 }
 
 .teal{
@@ -99,13 +100,15 @@
 }
 
 .teal-line{
-  border: 1px solid $teal_gray;
+  // border: 1px solid $teal_gray;
+  background-color: $light_teal_gray;
 }
 
 .link {
-  color: rgb(180, 180, 180);
+  color: rgb(65, 65, 65);
+  opacity: 0.6;
 }
 
 .link:hover {
-  color: rgb(126, 126, 126);
+  opacity: 1;
 }

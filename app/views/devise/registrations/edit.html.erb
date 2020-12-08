@@ -4,7 +4,13 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+
+    <%= f.input :name,
+                required: true,
+                autofocus: true %>
+    <%= f.input :username,
+                required: true%>            
+    <%= f.input :email, required: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
@@ -17,6 +23,7 @@
     <%= f.input :password_confirmation,
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
+    <%= f.input :photo, as: :file %>
     <%= f.input :current_password,
                 hint: "we need your current password to confirm your changes",
                 required: true,

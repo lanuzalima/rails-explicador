@@ -52,6 +52,8 @@
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Cadastre uma matéria", "/lectures/new", class: "dropdown-item" %>
             <%= link_to "Aulas Agendadas", "/lectures/:lecture_id/availabilities/:availability_id/bookings/:id", class: "dropdown-item" %>
+            <%= link_to "Painel de controle", control_panel_path, class: "dropdown-item" %>
+            <%= link_to "Alterar dados de perfil", edit_user_registration_path(current_user), class: "dropdown-item" %>
           </div>
         </li>
       </ul>
