@@ -1,5 +1,59 @@
-<h1>Detalhes da aula <%= @lecture.title.capitalize %></h1>
 
+
+<div class="container">
+
+ <div class="card_aula">
+    <div class="row justify-content-space between" > 
+        <div class="col-8">
+            <div class="card-product mt-5" style="height: 16rem;">
+                <img src="https://res.cloudinary.com/lanuza/image/upload/v1606869425/grjwl3eth0ia5xrng0rm.jpg" />
+                <div class="card-product-infos mx-5"  >
+                    <h1><%= @lecture.title.capitalize %></h1>
+                    <h2>Descrição: <%= @lecture.description %> only.</h2>
+                    <h2>Seu professor(a): <%= @owner.name %> </h2><br>
+                    <br>
+                   
+                    <p>Preço (h/aula)</p>
+                    <p>Avaliações:</p>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card-product mt-5 align-items-start pt-4" style="height: 16rem;">
+                <div class="card-product-infos mx-5">
+                  <h2 class="text-center">Escolher disponibilidade:</h2>
+                    <% @availabilities.each do |availability| %>
+                        <ul>
+                            <% if Booking.where(availability_id: availability.id)[0] %>
+                                <li><p><%= link_to ("<span style='color: red'>Indisponível: </span><strong>Data: #{availability.start_time} </strong>").html_safe,   lecture_availability_path(@lecture, availability) %> 
+                            <% else %></p>
+                                <p><%= link_to ("<span style='color: green'> </span><strong>Data: #{availability.start_time} </strong>").html_safe,   lecture_availability_path(@lecture, availability) %> 
+                            <% end %></p></li>
+                                <%= link_to "Agendar aula", new_lecture_availability_path(@lecture), class:"btn btn-info mx-2"%> 
+                        </ul>
+                    <% end %>
+                </div>  
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row justify-content-center">
+  <%= link_to "Voltar para aulas", lectures_path, class:"btn btn-success mt-5" %>
+</div>
+
+
+
+
+<%# código antigo %>
+<br>
+<br>
+<br>
+<h1>Detalhes da aula <%= @lecture.title.capitalize %></h1>
 
 
   <strong>Disciplina:</strong> <%= @lecture.subject %> <br>
@@ -30,5 +84,9 @@
   <br>
   <br>
 
-  <%= link_to "Adicionar horário", new_lecture_availability_path(@lecture) %> <br>
-  <%= link_to "Voltar para lista de aulas", lectures_path %>
+
+<div class="div">
+
+   <%= link_to "Adicionar horário", new_lecture_availability_path(@lecture), class:"btn btn-info mx-2"%> <br>
+  <%= link_to "Voltar para lista de aulas", lectures_path, class:"btn btn-success mx-2" %>
+</div>
