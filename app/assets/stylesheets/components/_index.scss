@@ -13,4 +13,53 @@
   opacity: 0.5;
 }
 
+.red {
+  color: $red
+}
 
+.green {
+  color: $dark-green
+}
+
+.list {
+  list-style: none;
+  margin: 0px;
+  padding-left: 10px;
+
+  p {
+    font-size: 14px;
+  }
+
+  i {
+    transition: 0.6s;
+  }
+
+  i:hover {
+    font-size: 18px;
+  }
+
+  .book {
+    color: $dark-green;
+  }
+
+  .book:hover {
+    color: $green;
+  }
+
+  .edit {
+    color: $dark-yellow;
+  }
+
+  .edit:hover {
+    color: $yellow;
+  }
+
+  .delete {
+    color: $dark-red;
+  }
+
+  .delete:hover {
+    color: $red;
+  }
+
+}
