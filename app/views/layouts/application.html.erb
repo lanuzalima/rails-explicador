@@ -27,8 +27,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <%= link_to "Buscar professor", "/lectures", class: "a nav-link" %>
+          <div class="form-inline">          
+            <button name="button" type="submit" class="btn btn-light">
+              <i class="fas fa-search"></i>
+            </button>
+          <%= form_tag lectures_path, method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Pesquisar qualquer coisa"
+            %>
+          <% end %>
+          </div>
         </li>
+          <%= link_to "Criar aula", "/lectures", class: "a nav-link mx-2" %>
         <% if user_signed_in?%>
           <li class="nav-item active">
             <%= link_to "Fazer logout", destroy_user_session_path, method: :delete, class: "a nav-link btn btn-info mx-2"%>          
