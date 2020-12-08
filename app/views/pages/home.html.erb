@@ -5,7 +5,7 @@
     <%# <a class="btn btn-info mb-2" href="#">Quero ser um explicador</a>
     <a class="btn btn-outline-info mb-2" href="#">Quero uma explicação</a> %>
     <div class="card-trip my-5 mx-2 d-flex justify-content-center" id="card-banner" style="width: 20rem;">
-      <div class="card-trip-infos">
+       <div class="card-trip-infos">
         <div>
           <h5 class="mt-2 mb-3 d-flex justify-content-center"><strong>Quero aprender sobre:</strong></h5>
           <div class="form-inline">          
@@ -62,8 +62,12 @@
   <div class="row justify-content-center">  
    <% @lectures.each do |lecture| %>
     <div class="card-trip my-3 mx-2" style="width: 16rem;">
-      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" />
-      <div class="card-trip-infos">
+        <% if lecture.user.photo.present? %>
+            <%= cl_image_tag lecture.user.photo.key%>
+        <% else %>
+            <%= image_tag "https://static.wixstatic.com/media/2bd527_3c1c98c65bfb4ba78f36b31c5a713816~mv2.png/v1/fill/w_152,h_160,al_c,q_85,usm_0.66_1.00_0.01/icone.webp" %>
+        <%end%>
+       <div class="card-trip-infos">
         <div>
           <h4><%= link_to"#{lecture.title.capitalize}", lecture_path(lecture)%></h4>
           <p><%= lecture.user.name %></p>
